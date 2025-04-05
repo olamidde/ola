@@ -5,18 +5,18 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Project One",
-    description: "A brief description of project one and what technologies were used.",
+    title: "project one",
+    description: "a brief description of project one and what technologies were used.",
     link: "/projects/project-one",
   },
   {
-    title: "Project Two",
-    description: "A brief description of project two and what technologies were used.",
+    title: "project two",
+    description: "a brief description of project two and what technologies were used.",
     link: "/projects/project-two",
   },
   {
-    title: "Project Three",
-    description: "A brief description of project three and what technologies were used.",
+    title: "project three",
+    description: "a brief description of project three and what technologies were used.",
     link: "/projects/project-three",
   },
 ];
@@ -25,11 +25,11 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="py-12 md:py-16">
       <div className="container text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-8">Projects</h2>
+        <h2 className="text-3xl font-bold tracking-tight mb-8">projects</h2>
         <div className="flex justify-center mb-8">
           <Button variant="outline" asChild>
             <Link href="/projects">
-              View All <ArrowRight className="ml-2 h-4 w-4" />
+              view all <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -37,13 +37,13 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <Card key={index} className="flex flex-col">
               <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
+                <CardTitle className="lowercase">{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardFooter className="mt-auto flex justify-center">
                 <Button variant="outline" asChild>
                   <Link href={project.link}>
-                    View Project <ArrowRight className="ml-2 h-4 w-4" />
+                    view project <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardFooter>

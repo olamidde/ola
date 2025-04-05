@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <>
       <div className="container py-12 md:py-16 text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Hello, I'm Your Name</h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">A brief tagline about what you do</p>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">hello, i'm your name</h1>
+        <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">a brief tagline about what you do</p>
       </div>
 
       <AboutSection />

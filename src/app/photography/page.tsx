@@ -4,50 +4,50 @@ import { Card, CardContent } from "@/components/ui/card";
 const photos = [
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 1",
-    caption: "Caption for photo 1",
+    alt: "photo 1",
+    caption: "caption for photo 1",
   },
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 2",
-    caption: "Caption for photo 2",
+    alt: "photo 2",
+    caption: "caption for photo 2",
   },
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 3",
-    caption: "Caption for photo 3",
+    alt: "photo 3",
+    caption: "caption for photo 3",
   },
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 4",
-    caption: "Caption for photo 4",
+    alt: "photo 4",
+    caption: "caption for photo 4",
   },
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 5",
-    caption: "Caption for photo 5",
+    alt: "photo 5",
+    caption: "caption for photo 5",
   },
   {
     src: "https://placehold.co/600x400",
-    alt: "Photo 6",
-    caption: "Caption for photo 6",
+    alt: "photo 6",
+    caption: "caption for photo 6",
   },
 ];
 
 export const metadata = {
-  title: "Photography | Your Name",
-  description: "A collection of my photography work",
+  title: "photography | your name",
+  description: "a collection of my photography work",
 };
 
 export default function PhotographyPage() {
   return (
-    <div className="container py-12 md:py-16">
-      <h1 className="text-4xl font-bold tracking-tight mb-4">Photography</h1>
-      <p className="text-xl text-muted-foreground mb-8">
-        A collection of my photography work
+    <div className="container py-12 md:py-16 text-center">
+      <h1 className="text-4xl font-bold tracking-tight mb-4">photography</h1>
+      <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">
+        a collection of my photography work
       </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {photos.map((photo, index) => (
           <Card key={index} className="overflow-hidden">
             <div className="relative aspect-[4/3]">

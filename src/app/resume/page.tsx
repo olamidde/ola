@@ -4,44 +4,44 @@ import { Separator } from "@/components/ui/separator";
 import { Download } from "lucide-react";
 
 export const metadata = {
-  title: "Resume | Your Name",
-  description: "My professional experience and skills",
+  title: "resume | your name",
+  description: "my professional experience and skills",
 };
 
 export default function ResumePage() {
   return (
-    <div className="container py-12 md:py-16">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+    <div className="container py-12 md:py-16 text-center">
+      <div className="flex flex-col items-center gap-4 mb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight mb-2">Resume</h1>
-          <p className="text-xl text-muted-foreground">
-            My professional experience and skills
+          <h1 className="text-4xl font-bold tracking-tight mb-2">resume</h1>
+          <p className="text-xl text-muted-foreground max-w-md mx-auto">
+            my professional experience and skills
           </p>
         </div>
         <Button asChild>
           <a href="/resume.pdf" download>
-            <Download className="mr-2 h-4 w-4" /> Download PDF
+            <Download className="mr-2 h-4 w-4" /> download pdf
           </a>
         </Button>
       </div>
 
-      <div className="grid gap-8">
+      <div className="grid gap-8 max-w-3xl mx-auto">
         {/* Education Section */}
         <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Education</CardTitle>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl lowercase">education</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-6">
-            <div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div className="border-b border-dashed border-slate-200 dark:border-neutral-700 !py-1 !my-0 hover:bg-muted transition-all duration-300 ease-in-out rounded-md px-1 mb-4">
+              <div className="flex justify-between items-baseline py-2">
                 <div>
-                  <h3 className="font-semibold">University Name</h3>
-                  <p className="text-muted-foreground">Bachelor of Science in Computer Science</p>
+                  <h3 className="font-medium">university name</h3>
+                  <p className="text-sm text-muted-foreground">bachelor of science in computer science</p>
                 </div>
                 <span className="text-sm text-muted-foreground">2014 - 2018</span>
               </div>
-              <p className="mt-2">
-                Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems
+              <p className="text-sm pb-2">
+                relevant coursework: data structures, algorithms, web development, database systems
               </p>
             </div>
           </CardContent>
@@ -49,39 +49,37 @@ export default function ResumePage() {
 
         {/* Experience Section */}
         <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Experience</CardTitle>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl lowercase">experience</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-6">
-            <div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div className="border-b border-dashed border-slate-200 dark:border-neutral-700 !py-1 !my-0 hover:bg-muted transition-all duration-300 ease-in-out rounded-md px-1 mb-4">
+              <div className="flex justify-between items-baseline py-2">
                 <div>
-                  <h3 className="font-semibold">Senior Developer</h3>
-                  <p className="text-muted-foreground">Example Corp</p>
+                  <h3 className="font-medium">senior developer</h3>
+                  <p className="text-sm text-muted-foreground">example corp</p>
                 </div>
-                <span className="text-sm text-muted-foreground">2021 - Present</span>
+                <span className="text-sm text-muted-foreground">2021 - present</span>
               </div>
-              <ul className="mt-2 list-disc pl-5 space-y-1">
-                <li>Led development of key features and mentored junior developers</li>
-                <li>Implemented CI/CD pipelines to improve deployment efficiency</li>
-                <li>Collaborated with design team to create responsive user interfaces</li>
+              <ul className="text-sm pb-2 list-disc pl-5 space-y-1">
+                <li>led development of key features and mentored junior developers</li>
+                <li>implemented ci/cd pipelines to improve deployment efficiency</li>
+                <li>collaborated with design team to create responsive user interfaces</li>
               </ul>
             </div>
 
-            <Separator />
-
-            <div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div className="border-b border-dashed border-slate-200 dark:border-neutral-700 !py-1 !my-0 hover:bg-muted transition-all duration-300 ease-in-out rounded-md px-1 mb-4">
+              <div className="flex justify-between items-baseline py-2">
                 <div>
-                  <h3 className="font-semibold">Developer</h3>
-                  <p className="text-muted-foreground">Tech Solutions</p>
+                  <h3 className="font-medium">developer</h3>
+                  <p className="text-sm text-muted-foreground">tech solutions</p>
                 </div>
                 <span className="text-sm text-muted-foreground">2018 - 2021</span>
               </div>
-              <ul className="mt-2 list-disc pl-5 space-y-1">
-                <li>Worked on various web applications using modern technologies</li>
-                <li>Developed RESTful APIs for client-side applications</li>
-                <li>Participated in code reviews and team planning sessions</li>
+              <ul className="text-sm pb-2 list-disc pl-5 space-y-1">
+                <li>worked on various web applications using modern technologies</li>
+                <li>developed restful apis for client-side applications</li>
+                <li>participated in code reviews and team planning sessions</li>
               </ul>
             </div>
           </CardContent>
@@ -89,26 +87,26 @@ export default function ResumePage() {
 
         {/* Skills Section */}
         <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Skills</CardTitle>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl lowercase">skills</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold mb-2">Programming Languages</h3>
-                <p>JavaScript, TypeScript, Python, Java</p>
+                <h3 className="font-medium mb-2 lowercase">programming languages</h3>
+                <p className="text-sm">javascript, typescript, python, java</p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Frontend</h3>
-                <p>React, Next.js, HTML, CSS, Tailwind CSS</p>
+                <h3 className="font-medium mb-2 lowercase">frontend</h3>
+                <p className="text-sm">react, next.js, html, css, tailwind css</p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Backend</h3>
-                <p>Node.js, Express, Django, Spring Boot</p>
+                <h3 className="font-medium mb-2 lowercase">backend</h3>
+                <p className="text-sm">node.js, express, django, spring boot</p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Other</h3>
-                <p>Git, Docker, AWS, CI/CD, Agile Methodologies</p>
+                <h3 className="font-medium mb-2 lowercase">other</h3>
+                <p className="text-sm">git, docker, aws, ci/cd, agile methodologies</p>
               </div>
             </div>
           </CardContent>
