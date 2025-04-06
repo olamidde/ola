@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Laptop, PenLine, Camera, Link2, FileSpreadsheet } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,20 @@ export function Navbar() {
     <TooltipProvider>
       <header className="sticky top-0 z-50 w-full py-4">
         <div className="container flex justify-center relative">
-          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://x.com/olaogn" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors">
+                  <div className="relative w-4 h-4">
+                    <Image src="/images/x-logo.svg" alt="X (Twitter)" fill className="object-contain" />
+                  </div>
+                  <span className="sr-only">X (Twitter)</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>x.com/olaogn</p>
+              </TooltipContent>
+            </Tooltip>
             <ThemeToggle />
           </div>
           <NavigationMenu className="border rounded-full px-2 py-1 bg-background/95 backdrop-blur shadow-sm">

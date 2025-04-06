@@ -37,7 +37,7 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="container py-12 md:py-16 text-center">
+    <div className="container px-4 sm:px-6 py-12 md:py-16 text-center">
       <h1 className="text-4xl font-bold tracking-tight mb-4">blog</h1>
       <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">
         my thoughts, ideas, and insights

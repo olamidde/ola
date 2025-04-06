@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export function Footer() {
   return (
@@ -7,7 +8,7 @@ export function Footer() {
       <div className="container flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-6">
           <Link
-            href="mailto:your.email@example.com"
+            href="mailto:olamideogunsanya@outlook.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
@@ -16,35 +17,35 @@ export function Footer() {
             <span className="sr-only">Email</span>
           </Link>
           <Link
-            href="https://github.com/yourusername"
+            href="https://github.com/olamidde"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Github className="h-5 w-5" />
+            <FaGithub className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/ola-ogunsanya"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Linkedin className="h-5 w-5" />
+            <FaLinkedin className="h-5 w-5" />
             <span className="sr-only">LinkedIn</span>
           </Link>
           <Link
-            href="https://twitter.com/yourusername"
+            href="tel:713-732-6048"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Twitter className="h-5 w-5" />
-            <span className="sr-only">Twitter</span>
+            <Phone className="h-5 w-5" />
+            <span className="sr-only">Phone</span>
           </Link>
         </div>
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Your Name
+          © {new Date().getFullYear()} Ola Ogunsanya
         </p>
       </div>
     </footer>

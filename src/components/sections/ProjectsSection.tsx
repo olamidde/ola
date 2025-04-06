@@ -5,26 +5,26 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "project one",
-    description: "a brief description of project one and what technologies were used.",
-    link: "/projects/project-one",
+    title: "music mind",
+    description: "ai music production assistant using langchain and openai apis that analyzes music theory patterns and generates midi sequences.",
+    link: "/projects/music-mind",
   },
   {
-    title: "project two",
-    description: "a brief description of project two and what technologies were used.",
-    link: "/projects/project-two",
+    title: "code mentor",
+    description: "intelligent code review system using llms and ast parsing to provide contextual code suggestions.",
+    link: "/projects/code-mentor",
   },
   {
-    title: "project three",
-    description: "a brief description of project three and what technologies were used.",
-    link: "/projects/project-three",
+    title: "autonomous robotics",
+    description: "path planning algorithm for boston dynamic's spot robot integrating computer vision and reinforcement learning.",
+    link: "/projects/autonomous-robotics",
   },
 ];
 
 export function ProjectsSection() {
   return (
     <section id="projects" className="py-12 md:py-16">
-      <div className="container text-center">
+      <div className="container px-4 sm:px-6 text-center">
         <h2 className="text-3xl font-bold tracking-tight mb-8">projects</h2>
         <div className="flex justify-center mb-8">
           <Button variant="outline" asChild>
@@ -33,7 +33,7 @@ export function ProjectsSection() {
             </Link>
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {projects.map((project, index) => (
             <Card key={index} className="flex flex-col">
               <CardHeader>

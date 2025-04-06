@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Mail } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const links = [
   {
@@ -16,10 +17,10 @@ const links = [
     url: "https://linkedin.com/in/yourusername",
   },
   {
-    title: "twitter",
+    title: "x",
     description: "follow me for updates and thoughts",
-    icon: Twitter,
-    url: "https://twitter.com/yourusername",
+    icon: FaXTwitter,
+    url: "https://x.com/olaogn",
   },
   {
     title: "email",
@@ -42,7 +43,7 @@ export const metadata = {
 
 export default function LinksPage() {
   return (
-    <div className="container py-12 md:py-16 max-w-md mx-auto text-center">
+    <div className="container px-4 sm:px-6 py-12 md:py-16 max-w-md mx-auto text-center">
       <h1 className="text-4xl font-bold tracking-tight mb-4">links</h1>
       <p className="text-xl text-muted-foreground mb-8">
         connect with me on various platforms

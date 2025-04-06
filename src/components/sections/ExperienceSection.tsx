@@ -1,85 +1,107 @@
-import { Separator } from "@/components/ui/separator";
 import { TechBadge } from "@/components/ui/tech-badge";
-import { Building, Code, Cpu } from "lucide-react";
+import { CompanyLogo } from "@/components/ui/company-logo";
 
 const experiences = [
   {
-    role: "software engineer",
-    company: "example corp",
-    icon: Building,
-    location: "sf",
-    period: "2021 - present",
-    description: "led development of key features and mentored junior developers.",
-    technologies: [
-      { name: "react", iconType: "code" },
-      { name: "typescript", iconType: "code" },
-      { name: "node.js", iconType: "server" },
-      { name: "graphql", iconType: "database" },
-    ],
-  },
-  {
-    role: "software engineer",
-    company: "tech solutions",
-    icon: Code,
+    role: "software engineer intern",
+    company: "figma",
     location: "nyc",
-    period: "2018 - 2021",
-    description: "worked on various web applications using modern technologies.",
+    period: "2024",
+    description: "implemented tab bar renaming feature and led design of agent debug menu system for desktop app.",
     technologies: [
-      { name: "javascript", iconType: "code" },
-      { name: "python", iconType: "code" },
-      { name: "django", iconType: "server" },
-      { name: "postgresql", iconType: "database" },
+      { name: "typescript", iconType: "code" as const },
+      { name: "react", iconType: "code" as const },
+      { name: "electron", iconType: "code" as const },
+      { name: "javascript", iconType: "code" as const },
     ],
   },
   {
-    role: "software engineer",
-    company: "startup inc",
-    icon: Cpu,
-    location: "austin",
-    period: "2016 - 2018",
-    description: "assisted in building and maintaining web applications.",
+    role: "software engineer intern",
+    company: "microsoft",
+    location: "nyc",
+    period: "2024",
+    description: "contributed to ml model serving infrastructure for sql server's query processing system.",
     technologies: [
-      { name: "html", iconType: "code" },
-      { name: "css", iconType: "code" },
-      { name: "javascript", iconType: "code" },
-      { name: "php", iconType: "server" },
+      { name: "python", iconType: "code" as const },
+      { name: "azure", iconType: "server" as const },
+      { name: "sql", iconType: "database" as const },
+      { name: "ml", iconType: "code" as const },
+    ],
+  },
+  {
+    role: "software engineer intern",
+    company: "microsoft",
+    location: "seattle",
+    period: "2023",
+    description: "engineered python and azure functions automation to clean up stale sharepoint online database records.",
+    technologies: [
+      { name: "python", iconType: "code" as const },
+      { name: "azure", iconType: "server" as const },
+      { name: "t-sql", iconType: "database" as const },
+      { name: "sharepoint", iconType: "server" as const },
+    ],
+  },
+  {
+    role: "autonomous robotics researcher",
+    company: "texas robotics",
+    icon: "texas",
+    location: "austin",
+    period: "2022-2023",
+    description: "developed advanced path planning algorithm for boston dynamic's spot robot.",
+    technologies: [
+      { name: "python", iconType: "code" as const },
+      { name: "ros", iconType: "code" as const },
+      { name: "opencv", iconType: "code" as const },
+      { name: "reinforcement learning", iconType: "code" as const },
+    ],
+  },
+  {
+    role: "software engineer intern",
+    company: "microsoft",
+    location: "san francisco",
+    period: "2022",
+    description: "developed an mvp react application to teach underprivileged groups career-based skills.",
+    technologies: [
+      { name: "react", iconType: "code" as const },
+      { name: "javascript", iconType: "code" as const },
+      { name: "firebase", iconType: "database" as const },
+      { name: "css", iconType: "code" as const },
     ],
   },
 ];
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-12 md:py-16 bg-muted/50">
-      <div className="container text-center">
+    <section id="experience" className="py-12 md:py-16">
+      <div className="container px-4 sm:px-6 text-center">
         <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
-        <div className="max-w-xl mx-auto text-left">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="border-b border-dashed border-slate-200 dark:border-neutral-700 !py-1 !my-0 hover:bg-muted transition-all duration-300 ease-in-out rounded-md px-1 mb-4"
-            >
-              <div className="flex items-center justify-between py-2">
-                <div className="flex items-center gap-3">
-                  <exp.icon className="h-5 w-5 text-muted-foreground" />
+        <div className="grid gap-8 max-w-3xl mx-auto w-full">
+          {experiences.map((experience, index) => (
+            <div key={index} className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-shrink-0">
+                {experience.company === "microsoft" || experience.company === "figma" ? (
+                  <CompanyLogo company={experience.company} />
+                ) : experience.icon === "texas" ? (
+                  <CompanyLogo company="texas" />
+                ) : null}
+              </div>
+              <div className="flex-grow">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                   <div>
-                    <p className="text-sm font-medium">{exp.company}</p>
-                    <p className="text-xs text-muted-foreground">{exp.role}</p>
+                    <h3 className="font-medium">{experience.company}</h3>
+                    <p className="text-sm text-muted-foreground">{experience.role}</p>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <p className="text-sm text-muted-foreground">{experience.location}</p>
+                    <p className="text-sm text-muted-foreground">{experience.period}</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-muted-foreground">{exp.location}</p>
-                  <p className="text-xs text-muted-foreground">{exp.period}</p>
+                <p className="text-sm mb-4">{experience.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {experience.technologies.map((tech, techIndex) => (
+                    <TechBadge key={techIndex} name={tech.name} iconType={tech.iconType} />
+                  ))}
                 </div>
-              </div>
-              <p className="text-sm pb-2 pl-8">{exp.description}</p>
-              <div className="flex flex-wrap gap-2 pl-8 pb-2">
-                {exp.technologies.map((tech, techIndex) => (
-                  <TechBadge
-                    key={techIndex}
-                    name={tech.name}
-                    iconType={tech.iconType}
-                  />
-                ))}
               </div>
             </div>
           ))}
