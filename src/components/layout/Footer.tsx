@@ -26,7 +26,7 @@ export function Footer() {
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com/in/ola-ogunsanya"
+            href="https://www.linkedin.com/in/ola-ogunsanya/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
