@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Code, Database, Server, Globe } from "lucide-react";
+import { TechLogo } from "./tech-logo";
 
 interface TechBadgeProps {
   name: string;
@@ -12,41 +12,36 @@ interface TechBadgeProps {
 
 export function TechBadge({ name, iconType = "code", className }: TechBadgeProps) {
   const getIcon = () => {
-    const iconClass = "h-3 w-3";
-    
-    switch (name.toLowerCase()) {
-      case "typescript":
-        return <Image src="/images/typescript-logo.svg" alt="TypeScript" width={12} height={12} className={iconClass} />;
-      case "javascript":
-        return <Image src="/images/javascript-logo.svg" alt="JavaScript" width={12} height={12} className={iconClass} />;
-      case "python":
-        return <Image src="/images/python-logo.svg" alt="Python" width={12} height={12} className={iconClass} />;
-      case "react":
-        return <Image src="/images/react-logo.svg" alt="React" width={12} height={12} className={iconClass} />;
+    // Check if we have a custom logo for this technology
+    const customLogos = ["javascript", "typescript", "python", "react", "java"];
+
+    if (customLogos.includes(name.toLowerCase())) {
+      return <TechLogo name={name} />;
+    }
+
+    // Fall back to generic icons
+    switch (iconType) {
+      case "database":
+        return <Database className="h-3 w-3" />;
+      case "server":
+        return <Server className="h-3 w-3" />;
+      case "globe":
+        return <Globe className="h-3 w-3" />;
+      case "code":
       default:
-        switch (iconType) {
-          case "database":
-            return <Database className={iconClass} />;
-          case "server":
-            return <Server className={iconClass} />;
-          case "globe":
-            return <Globe className={iconClass} />;
-          case "code":
-          default:
-            return <Code className={iconClass} />;
-        }
+        return <Code className="h-3 w-3" />;
     }
   };
 
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 px-2 py-1 text-xs rounded-full border border-border bg-muted/30",
+        "inline-flex items-center gap-1 px-2 py-1 text-xs rounded-full border border-border bg-muted/30",
         className
       )}
     >
       {getIcon()}
-      <span className="leading-none">{name}</span>
+      <span>{name}</span>
     </div>
   );
 }

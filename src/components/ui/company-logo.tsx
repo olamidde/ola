@@ -14,9 +14,10 @@ export function CompanyLogo({ company, className }: CompanyLogoProps) {
       case "microsoft":
         return "/images/microsoft-logo.svg";
       case "figma":
-        return "/images/figma-logo.svg";
+        return "/images/figma-logo.png";
+      case "texas robotics":
       case "texas":
-        return "/images/texas-logo.svg";
+        return "/images/ut_austin.png";
       default:
         return null;
     }
@@ -38,4 +39,4 @@ export function CompanyLogo({ company, className }: CompanyLogoProps) {
       />
     </div>
   );
-} 
+}

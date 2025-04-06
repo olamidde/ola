@@ -73,25 +73,21 @@ const experiences = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="py-12 md:py-16">
-      <div className="container px-4 sm:px-6 text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
-        <div className="grid gap-8 max-w-3xl mx-auto w-full">
+      <div className="container">
+        <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">experience</h2>
+        <div className="grid gap-8 max-w-3xl mx-auto">
           {experiences.map((experience, index) => (
-            <div key={index} className="flex flex-col sm:flex-row gap-4">
+            <div key={index} className="flex gap-4">
               <div className="flex-shrink-0">
-                {experience.company === "microsoft" || experience.company === "figma" ? (
-                  <CompanyLogo company={experience.company} />
-                ) : experience.icon === "texas" ? (
-                  <CompanyLogo company="texas" />
-                ) : null}
+                <CompanyLogo company={experience.company} />
               </div>
               <div className="flex-grow">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                <div className="flex items-center justify-between mb-2">
                   <div>
                     <h3 className="font-medium">{experience.company}</h3>
                     <p className="text-sm text-muted-foreground">{experience.role}</p>
                   </div>
-                  <div className="text-left sm:text-right">
+                  <div className="text-right">
                     <p className="text-sm text-muted-foreground">{experience.location}</p>
                     <p className="text-sm text-muted-foreground">{experience.period}</p>
                   </div>
