@@ -1,39 +1,83 @@
 import { NextResponse } from 'next/server';
 import { getAccessToken } from '@/lib/spotify';
 
+const CLIENT_ID = '0ade11485db140a8bf382266d41867c0';
+const CLIENT_SECRET = 'fc20f794d1904175b697bf02507d92b5';
 const SPOTIFY_USER_ID = 'cotn4ljazw7o661eopdvljuge';
 
-// This is a simplified version that returns a featured track from a playlist
+interface SpotifyArtist {
+  name: string;
+}
+
+interface SpotifyTrack {
+  name: string;
+  artists: SpotifyArtist[];
+  album: {
+    name: string;
+    images: Array<{ url: string }>;
+  };
+  external_urls: {
+    spotify: string;
+  };
+}
+
+const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
+
 export async function GET() {
   try {
     const { access_token } = await getAccessToken();
 
-    // Get a track from a public playlist (Spotify Wrapped)
-    const playlistId = '37i9dQZF1Eph7WHYmUm0QH'; // Your Spotify Wrapped playlist
-    const playlistResponse = await fetch(
-      `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-        cache: 'no-store',
+    // Try to get currently playing
+    const nowPlayingResponse = await fetch(NOW_PLAYING_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+      cache: 'no-store',
+    });
+
+    // If we can't get currently playing, get recently played
+    if (nowPlayingResponse.status !== 200) {
+      const recentlyPlayedResponse = await fetch(
+        'https://api.spotify.com/v1/me/player/recently-played?limit=1',
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+          cache: 'no-store',
+        }
+      );
+
+      if (recentlyPlayedResponse.status === 200) {
+        const recentlyPlayed = await recentlyPlayedResponse.json();
+        
+        if (recentlyPlayed.items && recentlyPlayed.items.length > 0) {
+          const track = recentlyPlayed.items[0].track as SpotifyTrack;
+          
+          return NextResponse.json({
+            isPlaying: false,
+            title: track.name,
+            artist: track.artists.map((artist) => artist.name).join(', '),
+            album: track.album.name,
+            albumImageUrl: track.album.images[0]?.url,
+            songUrl: track.external_urls.spotify,
+            recentlyPlayed: true,
+          });
+        }
       }
-    );
-
-    if (playlistResponse.status === 200) {
-      const playlistData = await playlistResponse.json();
-
-      if (playlistData.items && playlistData.items.length > 0) {
-        const track = playlistData.items[0].track;
-
+    } else {
+      const nowPlaying = await nowPlayingResponse.json();
+      
+      if (nowPlaying.item) {
+        const track = nowPlaying.item as SpotifyTrack;
+        
         return NextResponse.json({
-          isPlaying: false,
+          isPlaying: nowPlaying.is_playing,
           title: track.name,
-          artist: track.artists.map((_artist: any) => _artist.name).join(', '),
+          artist: track.artists.map((artist) => artist.name).join(', '),
           album: track.album.name,
           albumImageUrl: track.album.images[0]?.url,
           songUrl: track.external_urls.spotify,
-          recentlyPlayed: true,
+          recentlyPlayed: false,
         });
       }
     }
@@ -41,24 +85,15 @@ export async function GET() {
     // Fallback to a default response
     return NextResponse.json({
       isPlaying: false,
-      title: "No track data available",
-      artist: "Try again later",
-      album: "Spotify",
-      albumImageUrl: "https://i.scdn.co/image/ab67616d0000b273b5551cd31ab8fa39b307b1a0", // Default Spotify logo
-      songUrl: `https://open.spotify.com/user/${SPOTIFY_USER_ID}`,
+      title: null,
+      artist: null,
+      album: null,
+      albumImageUrl: null,
+      songUrl: null,
       recentlyPlayed: false,
     });
   } catch (error) {
     console.error('Error fetching Spotify data:', error);
-    return NextResponse.json({
-      error: 'Error fetching Spotify data',
-      isPlaying: false,
-      title: "Error fetching data",
-      artist: "Check console for details",
-      album: "Spotify",
-      albumImageUrl: "https://i.scdn.co/image/ab67616d0000b273b5551cd31ab8fa39b307b1a0", // Default Spotify logo
-      songUrl: `https://open.spotify.com/user/${SPOTIFY_USER_ID}`,
-      recentlyPlayed: false,
-    }, { status: 200 }); // Return 200 even on error to prevent UI issues
+    return NextResponse.json({ error: 'Error fetching Spotify data' }, { status: 500 });
   }
 }

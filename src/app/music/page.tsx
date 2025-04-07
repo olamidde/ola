@@ -24,7 +24,7 @@ export default function MusicPage() {
               <Headphones className="h-8 w-8 text-primary animate-pulse" />
             </div>
             <CardTitle className="text-2xl lowercase">currently listening</CardTitle>
-            <CardDescription>see what i'm playing right now on spotify</CardDescription>
+            <CardDescription>see what i&apos;m playing right now on spotify</CardDescription>
           </CardHeader>
           <CardContent>
             <NowPlaying />
@@ -35,7 +35,7 @@ export default function MusicPage() {
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl lowercase">my music taste</CardTitle>
-            <CardDescription>check out what i've been listening to</CardDescription>
+            <CardDescription>check out what i&apos;ve been listening to</CardDescription>
           </CardHeader>
           <CardContent>
             <TopTracks />
@@ -76,7 +76,7 @@ export default function MusicPage() {
                 </div>
               </div>
               <p className="text-muted-foreground max-w-md">
-                i'm working on creating my own music. snippets of my work will appear here soon!
+                i&apos;m working on creating my own music. snippets of my work will appear here soon!
               </p>
             </div>
           </CardContent>
