@@ -14,7 +14,7 @@ export function TechLogo({ name, className }: TechLogoProps) {
       case "javascript":
         return "/images/javascript-logo.svg";
       case "typescript":
-        return "/images/typescript-logo.svg";
+        return "/images/typescript-logo.png";
       case "python":
         return "/images/python-logo.png";
       case "react":
