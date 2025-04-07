@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getAccessToken } from '@/lib/spotify';
 
-const CLIENT_ID = '0ade11485db140a8bf382266d41867c0';
-const CLIENT_SECRET = 'fc20f794d1904175b697bf02507d92b5';
-const SPOTIFY_USER_ID = 'cotn4ljazw7o661eopdvljuge';
-
 interface SpotifyArtist {
   name: string;
 }
@@ -21,6 +17,7 @@ interface SpotifyTrack {
   };
 }
 
+// Endpoint for getting currently playing track
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
 
 export async function GET() {
@@ -49,10 +46,10 @@ export async function GET() {
 
       if (recentlyPlayedResponse.status === 200) {
         const recentlyPlayed = await recentlyPlayedResponse.json();
-        
+
         if (recentlyPlayed.items && recentlyPlayed.items.length > 0) {
           const track = recentlyPlayed.items[0].track as SpotifyTrack;
-          
+
           return NextResponse.json({
             isPlaying: false,
             title: track.name,
@@ -66,10 +63,10 @@ export async function GET() {
       }
     } else {
       const nowPlaying = await nowPlayingResponse.json();
-      
+
       if (nowPlaying.item) {
         const track = nowPlaying.item as SpotifyTrack;
-        
+
         return NextResponse.json({
           isPlaying: nowPlaying.is_playing,
           title: track.name,

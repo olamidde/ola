@@ -6,9 +6,7 @@ import { Headphones, Music, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
-interface NowPlayingProps {
-  className?: string;
-}
+// Component doesn't currently use props
 
 interface SpotifyData {
   isPlaying: boolean;
@@ -20,7 +18,7 @@ interface SpotifyData {
   recentlyPlayed: boolean;
 }
 
-export function NowPlaying({ className }: NowPlayingProps) {
+export function NowPlaying() {
   const [data, setData] = useState<SpotifyData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,11 +28,11 @@ export function NowPlaying({ className }: NowPlayingProps) {
       try {
         setLoading(true);
         const res = await fetch("/api/spotify");
-        
+
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
-        
+
         const spotifyData = await res.json();
         setData(spotifyData);
         setError(null);
@@ -47,10 +45,10 @@ export function NowPlaying({ className }: NowPlayingProps) {
     };
 
     fetchData();
-    
+
     // Refresh data every 30 seconds
     const intervalId = setInterval(fetchData, 30000);
-    
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -74,7 +72,7 @@ export function NowPlaying({ className }: NowPlayingProps) {
         <Music className="h-16 w-16 text-muted-foreground mb-4" />
         <p className="text-lg font-medium">No track data available</p>
         <p className="text-sm text-muted-foreground">
-          Check back later to see what I'm listening to
+          Check back later to see what I&apos;m listening to
         </p>
       </div>
     );

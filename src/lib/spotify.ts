@@ -1,5 +1,7 @@
+// Spotify API credentials
 const CLIENT_ID = '0ade11485db140a8bf382266d41867c0';
 const CLIENT_SECRET = 'fc20f794d1904175b697bf02507d92b5';
+// Spotify user ID
 const SPOTIFY_USER_ID = 'cotn4ljazw7o661eopdvljuge';
 
 const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');

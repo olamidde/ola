@@ -1,10 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Music, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
 export function TopTracks() {
   return (
     <div className="flex flex-col items-center justify-center">

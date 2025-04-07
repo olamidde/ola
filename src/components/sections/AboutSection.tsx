@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback} from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function AboutSection() {
@@ -13,10 +13,10 @@ export function AboutSection() {
           <Card className="w-full">
             <CardContent className="pt-6">
               <p className="mb-4">
-                hello! i'm ola, a software engineer based in austin, tx. i specialize in full-stack development and have a passion for ai, machine learning, and robotics.
+                hello! I&apos;m ola, a software engineer based in austin, tx. I specialize in full-stack development and have a passion for ai, machine learning, and robotics.
               </p>
               <p>
-                i'm currently studying computer science and mathematics at the university of texas at austin, with experience in software engineering at microsoft and figma. i enjoy building applications that solve real-world problems and exploring the intersection of ai and user experience.
+                I&apos;m currently studying computer science and mathematics at the university of texas at austin, with experience in software engineering at microsoft and figma. I enjoy building applications that solve real-world problems and exploring the intersection of ai and user experience.
               </p>
             </CardContent>
           </Card>
