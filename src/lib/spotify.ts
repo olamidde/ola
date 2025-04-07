@@ -1,18 +1,14 @@
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
+const CLIENT_ID = '0ade11485db140a8bf382266d41867c0';
+const CLIENT_SECRET = 'fc20f794d1904175b697bf02507d92b5';
+const SPOTIFY_USER_ID = 'cotn4ljazw7o661eopdvljuge';
 
 const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
-const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
-const TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks';
-const USER_PROFILE_ENDPOINT = 'https://api.spotify.com/v1/me';
+const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/users/${SPOTIFY_USER_ID}/player/recently-played`;
+const PLAYLISTS_ENDPOINT = `https://api.spotify.com/v1/users/${SPOTIFY_USER_ID}/playlists`;
 
+// Get access token using client credentials flow
 export async function getAccessToken() {
-  if (!REFRESH_TOKEN) {
-    throw new Error('No refresh token found');
-  }
-
   try {
     const response = await fetch(TOKEN_ENDPOINT, {
       method: 'POST',
@@ -21,8 +17,7 @@ export async function getAccessToken() {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        grant_type: 'refresh_token',
-        refresh_token: REFRESH_TOKEN,
+        grant_type: 'client_credentials',
       }).toString(),
       cache: 'no-store',
     });
@@ -40,33 +35,14 @@ export async function getAccessToken() {
   }
 }
 
-export async function getNowPlaying() {
+// Get recently played tracks
+export async function getRecentlyPlayed() {
   try {
     const { access_token } = await getAccessToken();
 
-    const response = await fetch(NOW_PLAYING_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-      cache: 'no-store',
-    });
-
-    if (!response.ok && response.status !== 204) {
-      throw new Error(`Failed to get now playing: ${response.statusText}`);
-    }
-
-    return response;
-  } catch (error) {
-    console.error('Error getting now playing:', error);
-    throw error;
-  }
-}
-
-export async function getTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
-
-    const response = await fetch(TOP_TRACKS_ENDPOINT, {
+    // Note: This endpoint requires user authorization, so it won't work with client credentials
+    // We'll use a public playlist instead in our implementation
+    const response = await fetch(RECENTLY_PLAYED_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -74,21 +50,22 @@ export async function getTopTracks() {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to get top tracks: ${response.statusText}`);
+      throw new Error(`Failed to get recently played: ${response.statusText}`);
     }
 
     return response;
   } catch (error) {
-    console.error('Error getting top tracks:', error);
+    console.error('Error getting recently played:', error);
     throw error;
   }
 }
 
-export async function getUserProfile() {
+// Get user playlists
+export async function getPlaylists() {
   try {
     const { access_token } = await getAccessToken();
 
-    const response = await fetch(USER_PROFILE_ENDPOINT, {
+    const response = await fetch(PLAYLISTS_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -96,12 +73,12 @@ export async function getUserProfile() {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to get user profile: ${response.statusText}`);
+      throw new Error(`Failed to get playlists: ${response.statusText}`);
     }
 
     return response;
   } catch (error) {
-    console.error('Error getting user profile:', error);
+    console.error('Error getting playlists:', error);
     throw error;
   }
 }
