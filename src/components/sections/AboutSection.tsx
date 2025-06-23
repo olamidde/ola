@@ -1,25 +1,22 @@
-import { Avatar, AvatarFallback} from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-
 export function AboutSection() {
   return (
     <section id="about" className="py-12 md:py-16">
-      <div className="container px-4 sm:px-6 text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-8">about me</h2>
-        <div className="flex flex-col items-center gap-8 max-w-2xl mx-auto w-full">
-          <Avatar className="w-32 h-32">
-            <AvatarFallback>oo</AvatarFallback>
-          </Avatar>
-          <Card className="w-full">
-            <CardContent className="pt-6">
-              <p className="mb-4">
-                hello! I&apos;m ola, a software engineer based in austin, tx. I specialize in full-stack development and have a passion for ai, machine learning, and robotics.
-              </p>
-              <p>
-                I&apos;m currently studying computer science and mathematics at the university of texas at austin, with experience in software engineering at microsoft and figma. I enjoy building applications that solve real-world problems and exploring the intersection of ai and user experience.
-              </p>
-            </CardContent>
-          </Card>
+      <div className="container px-4 sm:px-6">
+        <div className="max-w-2xl mx-auto">
+          <div className="space-y-4">
+            <p className="text-lg">
+              Hi! I&apos;m Ola.
+            </p>
+            <p>
+              I&apos;m a software engineer wrapping up my undergrad at UT Austin. These days I&apos;ve been thinking about applying the latest in AI research to robotics and autonomous systems.
+            </p>
+            <p>
+              I love building from zero to one. I&apos;ve worked with great teams at Microsoft and Figma straddling product development and engineering.
+            </p>
+            <p>
+              In my free time, I enjoy coding side projects, exploring new technologies, playing basketball and soccer, photography, creating music, and staying up to date with the latest in AI and machine learning.
+            </p>
+          </div>
         </div>
       </div>
     </section>

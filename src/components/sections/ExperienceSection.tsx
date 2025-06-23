@@ -1,5 +1,6 @@
 import { TechBadge } from "@/components/ui/tech-badge";
 import { CompanyLogo } from "@/components/ui/company-logo";
+import { Collapsible } from "@/components/ui/collapsible";
 
 const experiences = [
   {
@@ -73,34 +74,41 @@ const experiences = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="py-12 md:py-16">
-      <div className="container">
-        <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">experience</h2>
-        <div className="grid gap-8 max-w-3xl mx-auto">
-          {experiences.map((experience, index) => (
-            <div key={index} className="flex gap-4">
-              <div className="flex-shrink-0">
-                <CompanyLogo company={experience.company} />
-              </div>
-              <div className="flex-grow">
-                <div className="flex items-center justify-between mb-2">
-                  <div>
-                    <h3 className="font-medium">{experience.company}</h3>
-                    <p className="text-sm text-muted-foreground">{experience.role}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-muted-foreground">{experience.location}</p>
-                    <p className="text-sm text-muted-foreground">{experience.period}</p>
-                  </div>
+      <div className="container px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
+          <div className="grid gap-8">
+            {experiences.map((experience, index) => (
+              <div key={index} className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <CompanyLogo company={experience.company} />
                 </div>
-                <p className="text-sm mb-4">{experience.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {experience.technologies.map((tech, techIndex) => (
-                    <TechBadge key={techIndex} name={tech.name} iconType={tech.iconType} />
-                  ))}
+                <div className="flex-grow">
+                  <Collapsible
+                    trigger={
+                      <div className="flex items-center justify-between w-full">
+                        <div>
+                          <h3 className="font-medium">{experience.company}</h3>
+                          <p className="text-sm text-muted-foreground">{experience.role}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm text-muted-foreground">{experience.location}</p>
+                          <p className="text-sm text-muted-foreground">{experience.period}</p>
+                        </div>
+                      </div>
+                    }
+                  >
+                    <p className="text-sm mb-4">{experience.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {experience.technologies.map((tech, techIndex) => (
+                        <TechBadge key={techIndex} name={tech.name} iconType={tech.iconType} />
+                      ))}
+                    </div>
+                  </Collapsible>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

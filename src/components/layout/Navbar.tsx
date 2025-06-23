@@ -12,7 +12,7 @@ import {
 
 const routes = [
   { name: "projects", path: "/projects", icon: Laptop },
-  { name: "blog", path: "/blog", icon: PenLine },
+  { name: "writing", path: "/writing", icon: PenLine },
   { name: "photography", path: "/photography", icon: Camera },
   { name: "music", path: "/music", icon: Headphones },
   { name: "links", path: "/links", icon: Link2 },
