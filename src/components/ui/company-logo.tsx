@@ -10,17 +10,25 @@ interface CompanyLogoProps {
 
 export function CompanyLogo({ company, className }: CompanyLogoProps) {
   const getLogo = () => {
-    switch (company.toLowerCase()) {
-      case "microsoft":
-        return "/images/microsoft-logo.svg";
-      case "figma":
-        return "/images/figma-logo.png";
-      case "texas robotics":
-      case "texas":
-        return "/images/ut_austin.png";
-      default:
-        return null;
+    const companyLower = company.toLowerCase();
+    
+    if (companyLower === "microsoft") {
+      return "/images/microsoft-logo.svg";
     }
+    if (companyLower === "figma") {
+      return "/images/figma-logo.png";
+    }
+    if (companyLower === "texas robotics" || companyLower === "texas") {
+      return "/images/ut_austin.png";
+    }
+    if (companyLower === "cursor") {
+      return "/images/cursor-logo.png";
+    }
+    if (companyLower.startsWith("graphite")) {
+      return "/images/graphite-logo.png";
+    }
+    
+    return null;
   };
 
   const logo = getLogo();
