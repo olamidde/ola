@@ -8,13 +8,13 @@ export function AboutSection() {
               Hi! I&apos;m Ola.
             </p>
             <p>
-              I&apos;m a software engineer wrapping up my undergrad at UT Austin. These days I&apos;ve been thinking about applying the latest in AI research to robotics and autonomous systems.
+              I&apos;m a software engineer at Cursor. These days I&apos;ve been thinking about how AI can transform the developer experience and make coding more intuitive and efficient.
             </p>
             <p>
               I love building from zero to one. I&apos;ve worked with great teams at Microsoft and Figma straddling product development and engineering.
             </p>
             <p>
-              In my free time, I enjoy coding side projects, exploring new technologies, playing basketball and soccer, photography, creating music, and staying up to date with the latest in AI and machine learning.
+              In my free time, I enjoy coding side projects, exploring new technologies, playing basketball and soccer, photography, and creating music.
             </p>
           </div>
         </div>

@@ -4,6 +4,29 @@ import { Collapsible } from "@/components/ui/collapsible";
 
 const experiences = [
   {
+    role: "software engineer",
+    company: "cursor",
+    location: "nyc",
+    period: "2025 - present",
+    description: "building ai-powered developer tools that transform how engineers write code. working on advanced code intelligence, context-aware completions, and next-generation ide features using latest llm research.",
+    technologies: [
+      { name: "typescript", iconType: "code" as const },
+      { name: "python", iconType: "code" as const },
+      { name: "react", iconType: "code" as const },
+    ]
+  },
+  {
+    role: "software engineer",
+    company: "graphite",
+    location: "nyc",
+    period: "2025 - present",
+    description: "built modern git workflow tooling for stacked diffs and pr management. contributed to product and infrastructure before acquisition, now integrating graphite's workflow innovations into cursor's ai-powered development environment.",
+    technologies: [
+      { name: "typescript", iconType: "code" as const },
+      { name: "python", iconType: "code" as const },
+    ]
+  },
+  {
     role: "software engineer intern",
     company: "figma",
     location: "nyc",
@@ -79,19 +102,19 @@ export function ExperienceSection() {
           <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
           <div className="grid gap-8">
             {experiences.map((experience, index) => (
-              <div key={index} className="flex gap-4">
-                <div className="flex-shrink-0">
+              <div key={index} className="flex gap-4 items-start">
+                <div className="flex-shrink-0 mt-0.5">
                   <CompanyLogo company={experience.company} />
                 </div>
-                <div className="flex-grow">
+                <div className="flex-grow min-w-0">
                   <Collapsible
                     trigger={
-                      <div className="flex items-center justify-between w-full">
-                        <div>
+                      <div className="flex items-start justify-between w-full gap-4">
+                        <div className="flex-shrink min-w-0">
                           <h3 className="font-medium">{experience.company}</h3>
                           <p className="text-sm text-muted-foreground">{experience.role}</p>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right flex-shrink-0">
                           <p className="text-sm text-muted-foreground">{experience.location}</p>
                           <p className="text-sm text-muted-foreground">{experience.period}</p>
                         </div>
