@@ -410,14 +410,15 @@ export default function LinksPage() {
   });
 
   return (
-    <div className="container px-4 sm:px-6 py-12 md:py-16 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">interesting links</h1>
-      <p className="text-xl text-muted-foreground mb-8 text-center max-w-md mx-auto">
-        a collection of research papers, books, and resources i find interesting
-      </p>
+    <div className="py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">interesting links</h1>
+        <p className="text-xl text-muted-foreground mb-8 text-center">
+          a collection of research papers, books, and resources i find interesting
+        </p>
 
-      {/* Search and Filter */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        {/* Search and Filter */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -438,16 +439,16 @@ export default function LinksPage() {
               {category.replace('-', ' ')}
             </Badge>
           ))}
+          </div>
         </div>
-      </div>
 
-      {/* Results count */}
-      <p className="text-sm text-muted-foreground mb-4">
-        showing {filteredLinks.length} of {links.length} links
-      </p>
+        {/* Results count */}
+        <p className="text-sm text-muted-foreground mb-4">
+          showing {filteredLinks.length} of {links.length} links
+        </p>
 
-      {/* Links grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Links grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredLinks.length > 0 ? (
           filteredLinks.map((link, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-md transition-shadow">
@@ -477,6 +478,7 @@ export default function LinksPage() {
             <p className="text-muted-foreground">no links found matching your search</p>
           </div>
         )}
+        </div>
       </div>
     </div>
   );

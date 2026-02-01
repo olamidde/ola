@@ -24,17 +24,16 @@ const projects = [
 export function ProjectsSection() {
   return (
     <section id="projects" className="py-12 md:py-16">
-      <div className="container px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">projects</h2>
-            <Button variant="outline" asChild>
-              <Link href="/projects">
-                view all <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold tracking-tight">projects</h2>
+          <Button variant="outline" asChild>
+            <Link href="/projects">
+              view all <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <Link key={index} href={project.link}>
                 <Card className="flex flex-col hover:shadow-md transition-shadow cursor-pointer">
@@ -45,7 +44,6 @@ export function ProjectsSection() {
                 </Card>
               </Link>
             ))}
-          </div>
         </div>
       </div>
     </section>

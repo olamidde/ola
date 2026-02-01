@@ -37,13 +37,14 @@ export const metadata = {
 
 export default function WritingPage() {
   return (
-    <div className="container px-4 sm:px-6 py-12 md:py-16 text-center">
-      <h1 className="text-4xl font-bold tracking-tight mb-4">writing</h1>
-      <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">
-        my thoughts, ideas, and insights
-      </p>
+    <div className="py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">writing</h1>
+        <p className="text-xl text-muted-foreground mb-8 text-center">
+          my thoughts, ideas, and insights
+        </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {writingPosts.map((post, index) => (
           <Card key={index} className="flex flex-col">
             <CardHeader>
@@ -62,6 +63,7 @@ export default function WritingPage() {
             </CardFooter>
           </Card>
         ))}
+        </div>
       </div>
     </div>
   );

@@ -10,13 +10,14 @@ export const metadata = {
 
 export default function MusicPage() {
   return (
-    <div className="container px-4 sm:px-6 py-12 md:py-16 text-center">
-      <h1 className="text-4xl font-bold tracking-tight mb-4">music</h1>
-      <p className="text-xl text-muted-foreground mb-8 max-w-md mx-auto">
-        sharing my musical journey and inspirations
-      </p>
+    <div className="py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">music</h1>
+        <p className="text-xl text-muted-foreground mb-8 text-center">
+          sharing my musical journey and inspirations
+        </p>
 
-      <div className="grid gap-8 max-w-3xl mx-auto">
+        <div className="grid gap-8">
         {/* Currently Listening Section */}
         <Card>
           <CardHeader className="text-center">
@@ -81,6 +82,7 @@ export default function MusicPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );
