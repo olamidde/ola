@@ -21,17 +21,16 @@ const recentPosts = [
 export function WritingSection() {
   return (
     <section id="writing" className="py-12 md:py-16">
-      <div className="container px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">writing</h2>
-            <Button variant="outline" asChild>
-              <Link href="/writing">
-                view all <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold tracking-tight">writing</h2>
+          <Button variant="outline" asChild>
+            <Link href="/writing">
+              view all <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {recentPosts.map((post, index) => (
               <Link key={index} href={`/writing/${post.slug}`}>
                 <Card className="flex flex-col hover:shadow-md transition-shadow cursor-pointer">
@@ -45,7 +44,6 @@ export function WritingSection() {
                 </Card>
               </Link>
             ))}
-          </div>
         </div>
       </div>
     </section>

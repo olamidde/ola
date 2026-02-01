@@ -7,10 +7,11 @@ export const metadata = {
 
 export default function PhotographyPage() {
   return (
-    <div className="container px-4 sm:px-6 py-12 md:py-16 text-center min-h-[70vh] flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold tracking-tight mb-4">photography</h1>
+    <div className="py-12 md:py-16 min-h-[70vh] flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
+        <h1 className="text-4xl font-bold tracking-tight mb-4">photography</h1>
 
-      <div className="flex flex-col items-center justify-center gap-8 mt-8">
+        <div className="flex flex-col items-center justify-center gap-8 mt-8">
         <div className="relative">
           <Camera className="h-24 w-24 text-muted-foreground animate-pulse" />
           <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full animate-ping" />
@@ -23,6 +24,7 @@ export default function PhotographyPage() {
             <br />
             check back later for some amazing shots!
           </p>
+        </div>
         </div>
       </div>
     </div>

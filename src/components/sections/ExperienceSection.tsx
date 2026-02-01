@@ -97,10 +97,9 @@ const experiences = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="py-12 md:py-16">
-      <div className="container px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
-          <div className="grid gap-8">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
+        <div className="grid gap-8">
             {experiences.map((experience, index) => (
               <div key={index} className="flex gap-4 items-start">
                 <div className="flex-shrink-0 mt-0.5">
@@ -131,7 +130,6 @@ export function ExperienceSection() {
                 </div>
               </div>
             ))}
-          </div>
         </div>
       </div>
     </section>

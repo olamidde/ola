@@ -11,22 +11,23 @@ export const metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="container py-12 md:py-16 text-center">
-      <div className="flex flex-col items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight mb-2">resume</h1>
-          <p className="text-xl text-muted-foreground max-w-md mx-auto">
-            my professional experience and skills
-          </p>
+    <div className="py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <div className="flex flex-col items-center gap-4 mb-8 text-center">
+          <div>
+            <h1 className="text-4xl font-bold tracking-tight mb-2">resume</h1>
+            <p className="text-xl text-muted-foreground">
+              my professional experience and skills
+            </p>
+          </div>
+          <Button asChild>
+            <a href="/ola_ogunsanya_resume.pdf" download>
+              <Download className="mr-2 h-4 w-4" /> download pdf
+            </a>
+          </Button>
         </div>
-        <Button asChild>
-          <a href="/ola_ogunsanya_resume.pdf" download>
-            <Download className="mr-2 h-4 w-4" /> download pdf
-          </a>
-        </Button>
-      </div>
 
-      <div className="grid gap-8 max-w-3xl mx-auto">
+        <div className="grid gap-8">
         {/* Education Section */}
         <Card>
           <CardHeader className="text-center">
@@ -203,6 +204,7 @@ export default function ResumePage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );
