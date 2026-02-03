@@ -12,9 +12,6 @@ export function AboutSection() {
           <p>
             I love building from zero to one. I&apos;ve worked with great teams at Microsoft and Figma straddling product development and engineering.
           </p>
-          <p>
-            In my free time, I enjoy coding side projects, exploring new technologies, playing basketball and soccer, photography, and creating music.
-          </p>
         </div>
       </div>
     </section>
