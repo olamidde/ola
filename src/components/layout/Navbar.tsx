@@ -23,7 +23,7 @@ export function Navbar() {
   return (
     <TooltipProvider>
       <header className="sticky top-0 z-50 w-full py-4">
-        <div className="container flex justify-center relative">
+        <div className="container px-4 sm:px-6 flex justify-center relative">
           <div className="absolute right-4 top-1/2 -translate-y-1/2">
             <ThemeToggle />
           </div>

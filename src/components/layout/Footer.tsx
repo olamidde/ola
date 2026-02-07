@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 export function Footer() {
   return (
     <footer className="border-t py-6 md:py-8">
-      <div className="container flex flex-col items-center justify-center gap-4">
+      <div className="container px-4 sm:px-6 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-6">
           <Link
             href="mailto:olamideogunsanya@outlook.com"
