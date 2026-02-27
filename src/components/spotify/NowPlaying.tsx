@@ -6,8 +6,6 @@ import { Headphones, Music, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Component doesn't currently use props
-
 interface SpotifyData {
   isPlaying: boolean;
   title: string | null;
@@ -27,7 +25,7 @@ export function NowPlaying() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/spotify");
+        const res = await fetch("/api/spotify?type=now-playing");
 
         if (!res.ok) {
           throw new Error("Failed to fetch data");

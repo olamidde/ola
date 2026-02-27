@@ -1,86 +1,129 @@
-// Spotify API credentials
-const CLIENT_ID = '0ade11485db140a8bf382266d41867c0';
-const CLIENT_SECRET = 'fc20f794d1904175b697bf02507d92b5';
-// Spotify user ID
-const SPOTIFY_USER_ID = 'cotn4ljazw7o661eopdvljuge';
+// Spotify API — Authorization Code Flow with Refresh Token
+// Credentials are read from environment variables (.env.local)
+
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? '';
+const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET ?? '';
+const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN ?? '';
 
 const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
-const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/users/${SPOTIFY_USER_ID}/player/recently-played`;
-const PLAYLISTS_ENDPOINT = `https://api.spotify.com/v1/users/${SPOTIFY_USER_ID}/playlists`;
 
-// Get access token using client credentials flow
-export async function getAccessToken() {
-  try {
-    const response = await fetch(TOKEN_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${basic}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        grant_type: 'client_credentials',
-      }).toString(),
-      cache: 'no-store',
-    });
+// ── Spotify API endpoints ──────────────────────────────────────────────
+const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
+const RECENTLY_PLAYED_ENDPOINT = 'https://api.spotify.com/v1/me/player/recently-played';
+const TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks';
+const TOP_ARTISTS_ENDPOINT = 'https://api.spotify.com/v1/me/top/artists';
+const USER_PROFILE_ENDPOINT = 'https://api.spotify.com/v1/me';
 
-    const data = await response.json();
+// ── Access token (refresh-token grant) ─────────────────────────────────
+export async function getAccessToken(): Promise<{ access_token: string }> {
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basic}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: REFRESH_TOKEN,
+    }).toString(),
+    cache: 'no-store',
+  });
 
-    if (!response.ok) {
-      throw new Error(`Failed to get access token: ${data.error}`);
-    }
+  const data = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error('Error getting access token:', error);
-    throw error;
+  if (!response.ok) {
+    throw new Error(`Failed to get access token: ${data.error_description || data.error}`);
   }
+
+  return { access_token: data.access_token };
 }
 
-// Get recently played tracks
-export async function getRecentlyPlayed() {
-  try {
-    const { access_token } = await getAccessToken();
+// ── Helper: authenticated fetch ────────────────────────────────────────
+async function spotifyFetch(url: string): Promise<Response> {
+  const { access_token } = await getAccessToken();
 
-    // Note: This endpoint requires user authorization, so it won't work with client credentials
-    // We'll use a public playlist instead in our implementation
-    const response = await fetch(RECENTLY_PLAYED_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to get recently played: ${response.statusText}`);
-    }
-
-    return response;
-  } catch (error) {
-    console.error('Error getting recently played:', error);
-    throw error;
-  }
+  return fetch(url, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    cache: 'no-store',
+  });
 }
 
-// Get user playlists
-export async function getPlaylists() {
-  try {
-    const { access_token } = await getAccessToken();
+// ── Now Playing ────────────────────────────────────────────────────────
+export async function getNowPlaying() {
+  const response = await spotifyFetch(NOW_PLAYING_ENDPOINT);
 
-    const response = await fetch(PLAYLISTS_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to get playlists: ${response.statusText}`);
-    }
-
-    return response;
-  } catch (error) {
-    console.error('Error getting playlists:', error);
-    throw error;
+  // 204 = nothing playing right now
+  if (response.status === 204 || response.status > 400) {
+    return { isPlaying: false };
   }
+
+  const data = await response.json();
+
+  if (!data.item) {
+    return { isPlaying: false };
+  }
+
+  return {
+    isPlaying: data.is_playing as boolean,
+    title: data.item.name as string,
+    artist: (data.item.artists as { name: string }[]).map((a) => a.name).join(', '),
+    album: data.item.album.name as string,
+    albumImageUrl: data.item.album.images?.[0]?.url as string | undefined,
+    songUrl: data.item.external_urls.spotify as string,
+  };
+}
+
+// ── Recently Played ────────────────────────────────────────────────────
+export async function getRecentlyPlayed(limit = 1) {
+  const response = await spotifyFetch(`${RECENTLY_PLAYED_ENDPOINT}?limit=${limit}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to get recently played: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+// ── Top Tracks ─────────────────────────────────────────────────────────
+export async function getTopTracks(timeRange = 'medium_term', limit = 10) {
+  const response = await spotifyFetch(
+    `${TOP_TRACKS_ENDPOINT}?time_range=${timeRange}&limit=${limit}`
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to get top tracks: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+// ── Top Artists ────────────────────────────────────────────────────────
+export async function getTopArtists(timeRange = 'medium_term', limit = 10) {
+  const response = await spotifyFetch(
+    `${TOP_ARTISTS_ENDPOINT}?time_range=${timeRange}&limit=${limit}`
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to get top artists: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+// ── User Profile ───────────────────────────────────────────────────────
+export async function getUserProfile() {
+  const response = await spotifyFetch(USER_PROFILE_ENDPOINT);
+
+  if (!response.ok) {
+    throw new Error(`Failed to get user profile: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
 }
