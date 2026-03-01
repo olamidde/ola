@@ -4,12 +4,26 @@ import { TechBadge } from "@/components/ui/tech-badge";
 import { GraduationCap, Building, Code, Cpu } from "lucide-react";
 import { Download } from "lucide-react";
 
+const RESUME_HIDDEN = true;
+
 export const metadata = {
   title: "resume | ola ogunsanya",
   description: "my professional experience and skills",
 };
 
 export default function ResumePage() {
+  if (RESUME_HIDDEN) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] py-12 md:py-16">
+        <div className="flex flex-col items-center gap-6 text-center">
+          <h1 className="text-3xl font-bold tracking-tight mb-2">
+            temporarily down :)
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
