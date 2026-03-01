@@ -2,7 +2,9 @@
  * One-time script to obtain a Spotify refresh token.
  *
  * Usage:
- *   node scripts/get-spotify-token.mjs
+ *   node --env-file=.env.local scripts/get-spotify-token.mjs
+ *
+ * Requires SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in .env.local.
  *
  * Steps:
  *   1. Opens the Spotify authorization URL in your browser.
@@ -17,8 +19,15 @@ import { execSync } from 'node:child_process';
 import { URL, URLSearchParams } from 'node:url';
 
 // ── Configuration ──────────────────────────────────────────────────────
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || '0ade11485db140a8bf382266d41867c0';
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || 'fc20f794d1904175b697bf02507d92b5';
+// Credentials must be in .env.local — never commit them.
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+
+if (!CLIENT_ID || !CLIENT_SECRET) {
+  console.error('\n❌  Missing SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET.');
+  console.error('   Add them to .env.local and run: node --env-file=.env.local scripts/get-spotify-token.mjs\n');
+  process.exit(1);
+}
 const REDIRECT_URI = 'http://127.0.0.1:8888/callback';
 const SCOPES = [
   'user-read-currently-playing',
