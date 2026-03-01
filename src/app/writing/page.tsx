@@ -1,34 +1,5 @@
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-
-const writingPosts = [
-  {
-    title: "writing post one",
-    description: "a brief description of writing post one.",
-    date: "april 10, 2023",
-    slug: "writing-post-one",
-  },
-  {
-    title: "writing post two",
-    description: "a brief description of writing post two.",
-    date: "march 25, 2023",
-    slug: "writing-post-two",
-  },
-  {
-    title: "writing post three",
-    description: "a brief description of writing post three.",
-    date: "february 15, 2023",
-    slug: "writing-post-three",
-  },
-  {
-    title: "writing post four",
-    description: "a brief description of writing post four.",
-    date: "january 5, 2023",
-    slug: "writing-post-four",
-  },
-];
+import { writingPosts } from "@/content/writing";
 
 export const metadata = {
   title: "writing | ola ogunsanya",
@@ -37,32 +8,35 @@ export const metadata = {
 
 export default function WritingPage() {
   return (
-    <div className="py-12 md:py-16">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">writing</h1>
-        <p className="text-xl text-muted-foreground mb-8 text-center">
-          my thoughts, ideas, and insights
-        </p>
+    <div className="py-12 md:py-20">
+      <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
+        <div className="mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+            ola ogunsanya
+          </h1>
+          <p className="text-lg text-muted-foreground mt-1">writing</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {writingPosts.map((post, index) => (
-          <Card key={index} className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="lowercase">{post.title}</CardTitle>
-              <CardDescription>{post.date}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>{post.description}</p>
-            </CardContent>
-            <CardFooter className="mt-auto flex justify-center">
-              <Button variant="outline" asChild>
-                <Link href={`/writing/${post.slug}`}>
-                  read more <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+        <div className="flex flex-col gap-16">
+          {writingPosts.length === 0 ? (
+            <p className="text-muted-foreground">nothing here yet.</p>
+          ) : (
+            writingPosts.map((post, index) => (
+              <Link
+                key={index}
+                href={`/writing/${post.slug}`}
+                className="group block text-left"
+              >
+                <h2 className="text-xl font-bold tracking-tight text-foreground group-hover:underline">
+                  {post.title}
+                </h2>
+                <p className="mt-2 text-base text-muted-foreground">
+                  {post.description}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{post.date}</p>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>

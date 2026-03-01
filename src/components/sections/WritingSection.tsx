@@ -2,21 +2,9 @@ import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { writingPosts } from "@/content/writing";
 
-const recentPosts = [
-  {
-    title: "writing post one",
-    description: "a brief description of writing post one.",
-    date: "april 10, 2023",
-    slug: "writing-post-one",
-  },
-  {
-    title: "writing post two",
-    description: "a brief description of writing post two.",
-    date: "march 25, 2023",
-    slug: "writing-post-two",
-  },
-];
+const recentPosts = writingPosts.slice(0, 2);
 
 export function WritingSection() {
   return (
