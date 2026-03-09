@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Laptop, PenLine, Camera, Link2, FileSpreadsheet, Headphones } from "lucide-react";
+import { PenLine, Link2, Headphones } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import {
@@ -11,12 +11,9 @@ import {
 } from "@/components/ui/tooltip";
 
 const routes = [
-  { name: "projects", path: "/projects", icon: Laptop },
   { name: "writing", path: "/writing", icon: PenLine },
-  { name: "photography", path: "/photography", icon: Camera },
   { name: "music", path: "/music", icon: Headphones },
   { name: "links", path: "/links", icon: Link2 },
-  { name: "resume", path: "/resume", icon: FileSpreadsheet },
 ];
 
 export function Navbar() {
