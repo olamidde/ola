@@ -12,6 +12,7 @@ interface SpotifyData {
   artist: string | null;
   album: string | null;
   albumImageUrl: string | null;
+  trackId: string | null;
   songUrl: string | null;
   recentlyPlayed: boolean;
 }
