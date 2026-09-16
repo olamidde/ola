@@ -9,9 +9,24 @@ interface CompanyLogoProps {
 }
 
 export function CompanyLogo({ company, className }: CompanyLogoProps) {
+  const companyLower = company.toLowerCase();
+
+  // SpaceX uses a wide wordmark rather than a square icon, so render it at a
+  // fixed height with auto width. dark:invert flips the black wordmark to white
+  // so it stays visible on the dark theme.
+  if (companyLower.startsWith("spacex")) {
+    return (
+      <Image
+        src="/images/spacex-logo.png"
+        alt={`${company} logo`}
+        width={110}
+        height={16}
+        className={cn("h-4 w-auto object-contain dark:invert", className)}
+      />
+    );
+  }
+
   const getLogo = () => {
-    const companyLower = company.toLowerCase();
-    
     if (companyLower === "microsoft") {
       return "/images/microsoft-logo.svg";
     }
