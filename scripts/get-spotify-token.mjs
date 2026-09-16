@@ -19,7 +19,7 @@ import { execSync } from 'node:child_process';
 import { URL, URLSearchParams } from 'node:url';
 
 // ── Configuration ──────────────────────────────────────────────────────
-// Credentials must be in .env.local — never commit them.
+// Credentials must be in .env.local. Never commit them.
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
@@ -54,7 +54,7 @@ console.log('');
 try {
   execSync(`open "${authUrl.toString()}"`);
 } catch {
-  // Non-fatal – user can open the URL manually
+  // Non-fatal. User can open the URL manually
 }
 
 // ── Start a tiny HTTP server to catch the redirect ─────────────────────

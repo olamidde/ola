@@ -1,4 +1,4 @@
-// Spotify API — Authorization Code Flow with Refresh Token
+// Spotify API: Authorization Code Flow with Refresh Token
 // Credentials are read from environment variables (.env.local)
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? '';
