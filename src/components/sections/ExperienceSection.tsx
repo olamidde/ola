@@ -5,6 +5,18 @@ import { Collapsible } from "@/components/ui/collapsible";
 const experiences = [
   {
     role: "software engineer",
+    company: "spacexai",
+    location: "nyc",
+    period: "2026 - present",
+    description: "building ai-powered products from the ground up, exploring how autonomous systems and applied ml can push the boundaries of what software can do.",
+    technologies: [
+      { name: "typescript", iconType: "code" as const },
+      { name: "python", iconType: "code" as const },
+      { name: "ml", iconType: "code" as const },
+    ]
+  },
+  {
+    role: "software engineer",
     company: "cursor",
     location: "nyc",
     period: "2025 - present",
