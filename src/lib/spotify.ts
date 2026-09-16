@@ -5,6 +5,11 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? '';
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET ?? '';
 const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN ?? '';
 
+// True only when all three Spotify credentials are present. When false, the API
+// route serves empty (but well-formed) responses instead of throwing, so the
+// music page renders clean empty states rather than 500 errors.
+export const isSpotifyConfigured = Boolean(CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN);
+
 const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 

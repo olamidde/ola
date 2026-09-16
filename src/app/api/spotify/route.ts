@@ -5,12 +5,54 @@ import {
   getTopTracks,
   getTopArtists,
   getUserProfile,
+  isSpotifyConfigured,
 } from '@/lib/spotify';
+
+// Well-formed empty payloads returned when Spotify credentials are not set, so
+// the music page shows clean empty states instead of failing with a 500.
+function emptyResponseForType(type: string) {
+  switch (type) {
+    case 'top-tracks':
+      return { tracks: [], configured: false };
+    case 'top-artists':
+      return { artists: [], configured: false };
+    case 'profile':
+      return {
+        displayName: null,
+        email: null,
+        imageUrl: null,
+        profileUrl: null,
+        followers: 0,
+        country: null,
+        configured: false,
+      };
+    case 'now-playing':
+    default:
+      return {
+        isPlaying: false,
+        title: null,
+        artist: null,
+        album: null,
+        albumImageUrl: null,
+        songUrl: null,
+        recentlyPlayed: false,
+        configured: false,
+      };
+  }
+}
 
 // GET /api/spotify?type=now-playing | top-tracks | top-artists | profile
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'now-playing';
+
+  // Without credentials every Spotify call would fail. Serve empty data so the
+  // UI degrades gracefully; live data appears automatically once the
+  // SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET and SPOTIFY_REFRESH_TOKEN env vars
+  // are set.
+  if (!isSpotifyConfigured) {
+    return NextResponse.json(emptyResponseForType(type));
+  }
 
   try {
     switch (type) {
