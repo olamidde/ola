@@ -9,7 +9,7 @@ const recentPosts = writingPosts.slice(0, 2);
 export function WritingSection() {
   return (
     <section id="writing" className="py-12 md:py-16">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold tracking-tight">writing</h2>
           <Button variant="outline" asChild>

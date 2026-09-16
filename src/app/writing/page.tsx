@@ -9,7 +9,7 @@ export const metadata = {
 export default function WritingPage() {
   return (
     <div className="py-12 md:py-20">
-      <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
+      <div className="mx-auto w-full max-w-2xl px-4 sm:px-6">
         <div className="mb-16">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             ola ogunsanya

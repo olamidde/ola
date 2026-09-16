@@ -97,7 +97,7 @@ const experiences = [
 export function ExperienceSection() {
   return (
     <section id="experience" className="py-12 md:py-16">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
         <h2 className="text-3xl font-bold tracking-tight mb-8">experience</h2>
         <div className="grid gap-8">
             {experiences.map((experience, index) => (
