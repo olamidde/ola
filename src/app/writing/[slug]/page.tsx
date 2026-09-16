@@ -34,7 +34,7 @@ export default async function WritingPostPage({ params }: Props) {
 
   return (
     <div className="py-12 md:py-20">
-      <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
+      <div className="mx-auto w-full max-w-2xl px-4 sm:px-6">
         <Link
           href="/writing"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-12 transition-colors"

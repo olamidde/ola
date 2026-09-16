@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProfileData {
-  displayName: string;
+  displayName: string | null;
   email: string | null;
   imageUrl: string | null;
   profileUrl: string | null;
@@ -54,12 +54,12 @@ export function SpotifyProfile() {
     );
   }
 
-  if (error || !profile) {
+  if (error || !profile || !profile.displayName) {
     return (
       <div className="flex flex-col items-center justify-center p-4 text-center">
         <User className="h-16 w-16 text-muted-foreground mb-4" />
-        <p className="text-lg font-medium">Couldn&apos;t load profile</p>
-        <p className="text-sm text-muted-foreground">Try again later</p>
+        <p className="text-lg font-medium">No profile to show yet</p>
+        <p className="text-sm text-muted-foreground">Check back later</p>
       </div>
     );
   }

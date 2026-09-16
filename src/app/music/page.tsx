@@ -13,7 +13,7 @@ export const metadata = {
 export default function MusicPage() {
   return (
     <div className="py-12 md:py-16">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
         <h1 className="text-4xl font-bold tracking-tight mb-4 text-center">music</h1>
         <p className="text-xl text-muted-foreground mb-8 text-center">
           sharing my musical journey and inspirations
