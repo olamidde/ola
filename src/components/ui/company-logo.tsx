@@ -21,7 +21,7 @@ export function CompanyLogo({ company, className }: CompanyLogoProps) {
         alt={`${company} logo`}
         width={110}
         height={16}
-        className={cn("h-4 w-auto object-contain dark:invert", className)}
+        className={cn("h-4 w-auto shrink-0 object-contain dark:invert", className)}
       />
     );
   }
@@ -53,7 +53,7 @@ export function CompanyLogo({ company, className }: CompanyLogoProps) {
   }
 
   return (
-    <div className={cn("relative w-5 h-5", className)}>
+    <div className={cn("relative w-5 h-5 shrink-0", className)}>
       <Image
         src={logo}
         alt={`${company} logo`}

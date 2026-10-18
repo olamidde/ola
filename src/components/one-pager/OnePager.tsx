@@ -129,26 +129,24 @@ export function OnePager() {
           <ol className="space-y-1">
             {experiences.map((experience) => (
               <li key={`${experience.company}-${experience.period}`}>
-                <div className="group -mx-3 flex gap-4 rounded-xl px-3 py-3 transition-colors hover:bg-muted/40">
-                  <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-start">
-                    <CompanyLogo company={experience.company} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline justify-between gap-4">
+                <div className="group -mx-3 rounded-xl px-3 py-3 transition-colors hover:bg-muted/40">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <CompanyLogo company={experience.company} />
                       <h3 className="truncate font-medium text-foreground">
                         {experience.company}
                       </h3>
-                      <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground">
-                        {experience.period}
-                      </span>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {experience.role} · {experience.location}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {experience.description}
-                    </p>
+                    <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground">
+                      {experience.period}
+                    </span>
                   </div>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {experience.role} · {experience.location}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {experience.description}
+                  </p>
                 </div>
               </li>
             ))}
