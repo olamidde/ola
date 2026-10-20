@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { CompanyLogo } from "@/components/ui/company-logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { experiences } from "@/content/experience";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -123,38 +121,8 @@ export function OnePager() {
           <SocialLinks className="mt-7 flex items-center gap-2" />
         </header>
 
-        {/* Experience */}
-        <section className="reveal mt-16" style={{ animationDelay: "0.12s" }}>
-          <SectionLabel>experience</SectionLabel>
-          <ol className="space-y-1">
-            {experiences.map((experience) => (
-              <li key={`${experience.company}-${experience.period}`}>
-                <div className="group -mx-3 rounded-xl px-3 py-3 transition-colors hover:bg-muted/40">
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <CompanyLogo company={experience.company} />
-                      <h3 className="truncate font-medium text-foreground">
-                        {experience.company}
-                      </h3>
-                    </div>
-                    <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground">
-                      {experience.period}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {experience.role} · {experience.location}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {experience.description}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
         {/* Elsewhere */}
-        <section className="reveal mt-16" style={{ animationDelay: "0.2s" }}>
+        <section className="reveal mt-16" style={{ animationDelay: "0.12s" }}>
           <SectionLabel>elsewhere</SectionLabel>
           <div className="grid gap-2">
             {elsewhere.map(({ label, description, href }) => (
@@ -174,7 +142,7 @@ export function OnePager() {
         </section>
 
         {/* Contact */}
-        <section className="reveal mt-16" style={{ animationDelay: "0.28s" }}>
+        <section className="reveal mt-16" style={{ animationDelay: "0.2s" }}>
           <SectionLabel>get in touch</SectionLabel>
           <div className="flex flex-wrap items-center gap-3">
             <a
